@@ -9,7 +9,9 @@ If the presence of a person at the urinal is evaluated as a TRUE and the signal 
 After the urinal is flushed, the algorithm starts from the beginning.
 
 Note:
-The PIR sensor deactivates the output with a delay of 3 seconds.
+1)The PIR sensor deactivates the output with a delay of 3 seconds.
+2)Flushing starts by opening the solenoid valve by applying a short 9V DC voltage pulse to the solenoid. Flushing ends by applying a short 9V DC voltage pulse of opposite polarity to the same solenoid.
+
 
 Programming the Arduino Nano via Arduino IDE:
 ![IMG_20230820_122605](https://github.com/IvanZeman/automatic-toilet-flushing-Arduino-/assets/142148101/5cf1a8e0-c802-4768-8464-d6a251885dee)
