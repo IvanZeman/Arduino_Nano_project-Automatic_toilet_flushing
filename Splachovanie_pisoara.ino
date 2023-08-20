@@ -1,30 +1,33 @@
 const int builtInLEDPin = LED_BUILTIN;
-const int INPUT_PIN = 2;
-const int LED = 3;
-const int RELE_1 = 4;
-const int RELE_2 = 5;
-const int RELE_3 = 6;
-const int RELE_4 = 7;
+const int INPUT_PIN = 2;    //PIR sensor
+const int LED = 3;          //indicative red LED diode
+const int RELAY_1 = 4;
+const int RELAY_2 = 5;
+const int RELAY_3 = 6;
+const int RELAY_4 = 7;
 bool inputActive = false;
 unsigned long startTime = 0;
 
 void setup() {
   pinMode(INPUT_PIN, INPUT);
   pinMode(LED, OUTPUT);
-  pinMode(RELE_1, OUTPUT);
-  pinMode(RELE_2, OUTPUT);
-  pinMode(RELE_3, OUTPUT);
-  pinMode(RELE_4, OUTPUT);
+  pinMode(RELAY_1, OUTPUT);
+  pinMode(RELAY_2, OUTPUT);
+  pinMode(RELAY_3, OUTPUT);
+  pinMode(RELAY_4, OUTPUT);
 }
 
+//All relays are active at signal LOW
 void loop() {
-  digitalWrite(RELE_1, HIGH);
-  digitalWrite(RELE_2, HIGH);
-  digitalWrite(RELE_3, HIGH);
-  digitalWrite(RELE_4, HIGH);
+  digitalWrite(RELAY_1, HIGH);
+  digitalWrite(RELAY_2, HIGH);
+  digitalWrite(RELAY_3, HIGH);
+  digitalWrite(RELAY_4, HIGH);
 
-  bool inputState = digitalRead(INPUT_PIN);
+//Reading signal from PIR sensor
+  bool inputState = digitalRead(INPUT_PIN);   
 
+//If motion was detected by PIR sensor
   if (inputState == HIGH) {
     digitalWrite(builtInLEDPin, HIGH);
     digitalWrite(LED, HIGH);
@@ -33,25 +36,30 @@ void loop() {
       startTime = millis();
       inputActive = true;
     }
-  } else {
+  } 
+  //If motion was not detected
+  else {
     digitalWrite(builtInLEDPin, LOW);
     digitalWrite(LED, LOW);
 
     if (inputActive && millis() - startTime >= 10000) {
+      //Indicating the countdown to the next flush
       blinkLEDSequence(3, 500);
       blinkLEDSequence(4, 250);
       blinkLEDSequence(5, 125);
 
-      activateRelays(RELE_1, RELE_2);
+      //Activate the flushing system
+      activateRelays(RELAY_1, RELAY_2);
       delay(300);
-      deactivateRelays(RELE_1, RELE_2);
+      deactivateRelays(RELAY_1, RELAY_2);
 
+      //time of flushing the water
       delay(5000);
 
-      activateRelays(RELE_3, RELE_4);
+      //Deactivate the flushing system
+      activateRelays(RELAY_3, RELAY_4);
       delay(300);
-      deactivateRelays(RELE_3, RELE_4);
-
+      deactivateRelays(RELAY_3, RELAY_4);
 
       inputActive = false;
     }
