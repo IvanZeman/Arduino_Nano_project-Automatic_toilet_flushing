@@ -9,7 +9,9 @@ If the presence of a person at the urinal is evaluated as a TRUE and the signal 
 After the urinal is flushed, the algorithm starts from the beginning.
 
 Note:
+
 1)The PIR sensor deactivates the output with a delay of 3 seconds.
+
 2)Flushing starts by opening the solenoid valve by applying a short 9V DC voltage pulse to the solenoid. Flushing ends by applying a short 9V DC voltage pulse of opposite polarity to the same solenoid.
 
 
