@@ -1,6 +1,6 @@
 # Automatic_toilet_flushing_system-Arduino
 
-**Automatic flushing system function:**
+Automatic flushing system function:
 If the signal from the PIR sensor is in the HIGH state for longer than 10 seconds, the algorithm evaluates the presence of a person at the urinal as a TRUE. If this signal is shorter than 10 seconds, nothing happens. The algorithm starts from the beginning.
 
 If the presence of a person at the urinal is evaluated as a TRUE and the signal from PIR sensor immediately changes to LOW (the person has left the urinal), at that moment the countdown to flushing starts - flashing of the LED diode starts. After countdown the flushing system is activated. This is followed by a 5-second pause for the flushing of the urinal, after which the flushing system will be turn off.
