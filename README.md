@@ -8,7 +8,7 @@ If the presence of a person at the urinal is evaluated as a TRUE and the signal 
 
 After the urinal is flushed, the algorithm starts from the beginning.
 
-Note:
+Notes:
 
 1) The PIR sensor deactivates the output with a delay of 3 seconds.
 
